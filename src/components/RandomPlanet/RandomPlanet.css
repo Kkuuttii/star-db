@@ -1,0 +1,21 @@
+.random-planet {
+    display: flex;
+    justify-content: left;
+    background-color: #6c7d82;
+    margin: 25px 0;
+}
+
+.random-planet-list{
+    background-color: #6c7d82;
+    color: white;
+}
+
+
+
+.random-planet-image{
+    margin: 10px 40px 10px 25px;
+}
+
+.random-planet-card-items {
+    margin: 0px 10px;
+}
