@@ -1,0 +1,14 @@
+.planet-details{
+    display: flex;
+    justify-content: right;
+    margin-left: 10px;
+    background-color: #6c7d82;
+}
+
+.planet-details-image {
+    margin: 10px 10px;
+}
+
+.planet-details-div-list{
+    margin: 15px 40px 0 25px;
+}

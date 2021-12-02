@@ -1,0 +1,10 @@
+.item-list{
+    margin-right: 20px;
+}
+
+.item-list-menu {
+    background-color: #6c7d82;
+    min-width: 230px;
+    /* margin-right: 0px; */
+    padding-right: 25px;
+}

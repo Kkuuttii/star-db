@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+   
+    height: 60px;
+}
+
+.header-h1{
+    margin: 10px 40px 0 0;
+}
+
+.radio-button{
+    margin-right: 15px;
+    /* background-color: #414a4c НЕ ИЗМЕНЯЕТСЯ*/
+}
