@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import './PlanetDetails.css';
-import { List, Typography, Divider, Image } from 'antd';
+import { List, Typography, Divider, Image, Spin } from 'antd';
 
-function PlanetDetails () {
-    let data = [
-        '8900',
-        'N/A',
-        '341',
-        'unknown',
-        'swamp, jungles',
-        'murky',
-    ];
+export function getId (url: string) {
+	let arr = url.split("/");
+	return arr[arr.length - 2];
+}
 
-		let [planet, setPlanet] = useState<any>();
+function PlanetDetails (props: any) {
+    // let data = [
+    //     '8900',
+    //     'N/A',
+    //     '341',
+    //     'unknown',
+    //     'swamp, jungles',
+    //     'murky',
+    // ];
 
+		const [planet, setPlanet] = useState<any>();
+		const [loading, setLoading] = useState(true);
 		// сработает только после мотнирования компонента, при обновлении не будет срабатывать т.к в зависимостях указаны []
 		useEffect(() => {
-			getPlanet();
-		}, []);
+				getPlanet();
+		}, [props.id]);
 
 		async function getPlanet() {
-			let response = await fetch('https://swapi.dev/api/planets/11');
+			setLoading(true);
+			let response = await fetch(`https://swapi.dev/api/planets/${props.id}`);
 
 			let commits = await response.json();
 
@@ -34,23 +40,20 @@ function PlanetDetails () {
 				`Population: ${commits.climate}`,
 			];
 
-			console.log(commits);
-			console.log(getId(commits.url));
 			setPlanet({
 				id: getId(commits.url),
 				name: commits.name,
 				info,
 			});
-		}
-
-		function getId (url: string) {
-			let arr = url.split("/");
-			return arr[arr.length - 2];
+			setLoading(false);
 		}
 
     return (
         <div className="planet-details">
-            <div className="planet-details-image"> 
+						{loading && <Spin />}
+            {!loading && 
+						<div className="planet-details-wrapper">
+							<div className="planet-details-image"> 
                 <Image 
                     width={120}
                     src={`https://starwars-visualguide.com/assets/img/planets/${planet?.id}.jpg`}
@@ -70,6 +73,7 @@ function PlanetDetails () {
                 )}
                 />
             </div>
+						</div>}
         </div>
         
     )
